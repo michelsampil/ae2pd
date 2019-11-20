@@ -1,0 +1,34 @@
+UT6-PD2
+
+Incrementos Shellsort y sus peores casos
+
+-INCREMENTO DE SEDGEWICK O(N^4/3)
+
+4^x+3.2^(x-1)+1
+
+ej. Incrementos: 77,23,8,1
+
+-INCREMENTO DE PAPERNOV Y STASEVICH O(N^3/2)
+
+2^(x+1) 
+
+ej. Incrementos: 9,5,3,1
+
+-INCREMENTO DE SEDGEWICK (CON SERIE GEOMETRICA) O(N*LOG^2(N))
+
+(2^(i+2))*(2^(i+2)-3)+1
+
+ej. Incrementos: 929,209,41,5,1
+
+Bibliografias
+
+https://en.wikipedia.org/wiki/Shellsort
+http://thomas.baudel.name/Visualisation/VisuTri/Docs/shellsort.pdf
+
+---------------------------------------------------------------------------------------
+
+-INCREMENTO DE SEDGEWICK
+
+-INCREMENTO DE PAPERNOV Y STASEVICH
+
+-INCREMENTO DE SEDGEWICK (CON SERIE GEOMETRICA)

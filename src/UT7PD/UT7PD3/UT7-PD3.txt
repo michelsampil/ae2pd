@@ -1,0 +1,116 @@
+El objetivo de este trabajo es analizar la factibilidad, conveniencia y orden del tiempo de ejecuci�n de un algoritmo
+de ordenaci�n por selecci�n basado en el uso de colas de prioridad, y su implementaci�n utilizando clases est�ndar
+de las librer�as de JAVA.
+
+1) Analiza y responde las siguientes preguntas:
+a) �Qu� es una �Cola de prioridad�?
+Una cola de prioridades es un tipo de dato abstracto similar a una cola en la que los elementos tienen adicionalmente, una prioridad asignada.1?2? En una cola de prioridades 
+un elemento con mayor prioridad ser� desencolado antes que un elemento de menor prioridad. Si dos elementos tienen la misma prioridad, se desencolar�n siguiendo el orden de cola.
+
+
+b) �Cu�les son sus principales caracter�sticas?
+Una cola de prioridad ha de soportar al menos las siguientes dos operaciones:
+-A�adir con prioridad: se a�ade un elemento a la cola, con su correspondiente prioridad.
+-Eliminar elemento de mayor prioridad: se devuelve y elimina el elemento con mayor prioridad m�s antiguo que no haya sido desencolado de la cola.
+
+Podr�an verse a las colas de prioridades como colas modificadas, en las que en lugar de obtener el siguiente elemento de la cola, se obtiene elemento de mayor prioridad en la cola
+
+c) �C�mo puede ser implementada?
+
+Implementaciones triviales
+
+Hay muchas formas de implementar de forma sencilla, aunque a menudo ineficientemente, una cola de prioridades. A pesar de su ineficiencia,
+pueden ser muy �tiles para observar la analog�a con la realidad y comprender el funcionamiento abstracto 
+de una cola de prioridades. Por ejemplo, una implementaci�n posible ser�a mantener todos los elementos en una lista no ordenada. 
+Cuando se pida el elemento con mayor prioridad, se buscan todos los elementos hasta encontrar el de mayor prioridad (la complejidad de esta estructura tendr�a,
+seg�n la notaci�n O grande complejidad computacional de O(1) en inserci�n, y de O(n) para el desencolado, ya que es la complejidad m�nima para buscar en una lista no ordenada).
+
+Implementaci�n habitual
+Para mejorar el rendimiento, las colas de prioridades suelen implementarse utilizando un mont�culo como estructura de datos subyacente, y obteniendo as� un rendimiento de
+O(log{n}) para inserciones y borrados, y de O(n) para la construcci�n inicial. 
+Existen ciertos tipos especializados de mont�culos, como los mont�culos de Fibonacci, que pueden ofrecer mejores cotas asint�ticas
+para algunas operaciones.
+
+En lugar de un mont�culo, puede utilizarse un �rbol binario de b�squeda auto-balanceable, en cuyo caso la inserci�n y borrado 
+siguen teniendo un coste de O(log {n}), mientras que la construcci�n de �rboles a partir de secuencias de elementos
+ya existentes pasar�a a tener un coste de O(n\log {n}).
+
+Desde el punto de vista de la complejidad computacional, las colas de prioridades son congruentes con los algoritmos de b�squeda.
+
+Mont�culos especializados
+Existen diversos tipos de mont�culos especializados que, o bien permiten operaciones adicionales, o bien tienen un rendimiento mejor que otros mont�culos para ciertos tipos de claves (representando la prioridad), y espec�ficamente cuando las prioridades son n�meros enteros.
+
+Cuando el conjunto de claves es el conjunto conocido y finito{1,2,... ,C}}, y solo se necesitan las funciones de insertar, encontrar-m�nimo, y extraer-m�nimo, puede construirse una cola de prioridades de altura limitada implementada como un vector de C listas enlazadas junto con un entero apuntando a la lista superior, inicialmente 
+C. La inserci�n de un elemento de clave k introduce el elemento en la k-�sima lista, y establece ambos en tiempo constante. Extraer-m�nimo borra y devuelve el primer elemento de la lista de la prioridad establecida por el �ndice superior, que es incrementado hasta que apunte a una lista no vac�a de nuevo, lo que lleva O(C) tiempo en el peor caso. Puede verse un caso �til de este
+tipo de colas para la ordenaci�n de v�rtices de un grafo en funci�n de su grado.
+Para el mismo conjunto O(N), un �rbol de van Emde Boas podr�a admitir las operaciones de m�nimo, m�ximo, insertar, eliminar, buscar, extraer-m�nimo, extraer-m�ximo, predecesor y sucesor con un coste de O(\log \log C)}, aunque tiene un coste espacial para colas peque�as de un 
+O(2^{m/2}), para m n�mero de bits de prioridad posibles.
+Para aplicaciones que realicen una gran cantidad de operaciones de encontrar-m�nimo por cada operaci�n de extraer-m�nimo, la complejidad temporal de las acciones de encontrar-m�nimo puede reducirse a O(1) en todas las implementaciones de �rboles y mont�culos, almacenando en la estructura el elemento con mayor prioridad despu�s de cada inserci�n y borrado (a modo de cach�). Para la inserci�n, esto tendr� un coste a lo sumo constante, ya que cada elemento nuevo insertado solo ha de compararse con el actual m�nimo (ya cacheado). Para el borrado, esto a�ade como m�ximo el coste de encontrar-m�nimo que, en general, es menos costoso que el propio borrado, por lo que el comportamiento temporal asint�tico no se ve afectado, y el rendimiento pr�ctico tampoco lo har� en general.
+
+2) JAVA tiene una clase de librer�a �PriorityQueue�. Busca la documentaci�n correspondiente y contesta las
+siguientes preguntas:
+a) �Qu� es una �PriortyQueue� de JAVA?
+
+Una cola de prioridad ilimitada basada en un mont�n de prioridad. Los elementos de la cola prioritaria se ordenan de acuerdo con su ordenamiento natural,
+o mediante un comparador proporcionado en el momento de la construcci�n de la cola, seg�n el constructor utilizado. Una cola prioritaria no permite elementos nulos. 
+Una cola prioritaria que se basa en el orden natural tampoco permite la inserci�n de objetos no comparables (hacerlo puede dar lugar a ClassCastException).
+La cabecera de esta cola es el elemento m�nimo con respecto al orden especificado. Si varios elementos est�n vinculados por el menor valor, la cabeza es uno de esos elementos: 
+los v�nculos se rompen arbitrariamente. 
+Las operaciones de recuperaci�n de la cola sondean, eliminan, miran y acceden al elemento en la cabecera de la cola.
+
+Una cola prioritaria no tiene l�mites, pero tiene una capacidad interna que gobierna el tama�o de una matriz utilizada para almacenar los elementos en la cola.
+Siempre es al menos tan grande como el tama�o de la cola. A medida que se agregan elementos a una cola prioritaria, su capacidad crece autom�ticamente. 
+Los detalles de la pol�tica de crecimiento no est�n especificados.
+
+Esta clase y su iterador implementan todos los m�todos opcionales de las interfaces Collection e Iterator. No se garantiza que el iterador proporcionado en el iterador de m�todo () 
+atraviese los elementos de la cola de prioridad en ning�n orden en particular. Si necesita un recorrido ordenado, considere usar Arrays.sort (pq.toArray ()).
+
+b) �Qu� interfaces implementa?
+
+public class PriorityQueue<E>
+extends AbstractQueue<E>
+implements Serializable
+
+Como vemos implmenta la clase abstracta AbstractQueue e implementa la interfaz Serializable, Iterable, Collection y Queue.
+
+c) �Qu� caracter�sticas tiene?
+
+
+
+d) �Puede definirse el orden natural en la misma?
+El mismo ya viene preestablecido pero podemos "definirlo" pasandole un comparador
+
+
+e) �Cu�les son las operaciones m�s importantes, y cu�les los �rdenes del tiempo de ejecuci�n de las mismas?
+enqueue (Offer, Add): insertar un elemento en la cola. O(log(n))
+dequeue(Poll, Remove): eliminar un elemento de la cola.  O(log(n))
+isEmpty: devuelve verdadero si la cola est� vac�a.O(1)
+size: devuelve el tama�o / n�mero de elementos en la cola. O(1)
+contiene - Devuelve verdadero si la cola contiene el elemento dado. O(N)
+peek - Devolver el elemento frontal de la cola, sin eliminarlo. O(1)
+
+
+3) Utilizando la clase JAVA �PriorityQueue� y el seudoc�digo gen�rico visto en clase para un algoritmo de
+ordenaci�n por selecci�n
+x elemento
+E conjunto de entrada
+S estructura con Inserta y Suprime / Min
+y elemento
+comienzo
+Para x en E
+ INSERTA(x,S);
+Mientras no VACIA(S)
+ y := MIN(S)
+ procesar(y)
+ SUPRIME(y,S)
+Fin mientras
+fin
+
+a) escribe un programa JAVA que implemente este algoritmo.
+b) Pru�balo con conjuntos de datos de diversos tama�os y ordenados de diferentes formas,
+c) Mide el tiempo de ejecuci�n que insume para cada conjunto de datos
+d) �puedes asociar la evoluci�n del tiempo de ejecuci�n con el orden esperado del mismo? Desarrolla tus
+comentarios.
+
+en mi caso no puedo asociarlo ya que el resultado esperado podria ser parecido a un heapsort o quicksort con orden O(N) u orden O(N*logN), sin embargo
+sus mediciones arrojan resultados semejantes a burbuja que tiene orden O(N^2)

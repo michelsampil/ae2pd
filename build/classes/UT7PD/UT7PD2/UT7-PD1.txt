@@ -1,0 +1,40 @@
+Analiza cuidadosamente las siguientes preguntas y selecciona la respuesta más adecuada en cada una
+fundamentando tu decisión. ¿Por qué las otras respuestas no te parecen correctas? ¿Agregarías alguna pregunta
+sobre algún aspecto de este tema que te resulte particularmente dificultoso de comprender?
+
+1. Un Árbol Parcialmente Ordenado es
+a. Un árbol binario que siempre está balanceado (Podria ser, porque la dif de las alturas de los sub-arboles siempre difiere a lo sumo en 1)
+b. Un árbol binario de búsqueda (No, porque este se llena de arriba abajo de izq a der. tampoco cumple que los elementos menores se encuentran en el sub arbol izq y los mayores en el subarbol der)
+c. Un árbol para el que las inserciones siempre toman entre 2h+1 y 2h+1 -1 comparaciones, siendo h la alturadel árbol (No, Esto depende de la implementacion, si esta representado con un vector recorremos de 1 hasta n/2, 
+				es decir el ultimo nodo interno, de ahi revisamos su hijo izquierdo, si esta vacio insertamos, sino revisamo el derecho y de estar vacio insertamos y sino esto quiere decir que esta completo, esto haria
+				a lo sumo n/2 comparaciones considerando todos los nodos internos y 2 comparaciones en le ultimo nodo interno es decir orden(N), podria ser orden constante si almacenamos la posicion del ultimo elemento insertado.
+d. Ninguna es correcta…
+
+2. ¿qué operaciones primitivas del TDA ARBOL BINARIO (y el correspondiente Nodo) no precisaríamos para
+implementar las dos operaciones indicadas del TDA APO?
+a. TNodoArbolBinario.hijoIzq() (La utiliza el apo, aunque la implementacion que haremos con el vector es mas eficiente encontrando el hijod der en la posicion i*2)
+b. TNodoArbolBinario.hijoDer () (La utiliza el apo, aunque la implementacion que haremos con el vector es mas eficiente encontrando el hijod der en la posicion i*2+1)
+c. TNodoArbolBinario.Buscar(unaClave) (No la necesitamos en ningun momento)
+d. TNodoArbolBinario.Padre() (La utiliza el apo, aunque la implementacion que haremos con el vector es mas eficiente encontrando el padre en la posicion i div 2 o i div 2 - 1 dependiendo si la posicion es par o impar)
+
+3. ¿cuál sería el orden del tiempo de ejecución de la operación TNodoArbolBinario.Padre() si el árbol está
+representado como los árboles comunes ya tratados?
+a) O(n) (Es la correcta, tiene que recorrer todos los nodos hasta encontrar un nodo que tenga de hijo al nodo, esto se debe al no haber un orden en los nodos)
+b) Constante (Este tiempo se da en un APO representado como un vector)
+c) O(n2) (No encuentro situacion que tarde tanto, ya que si recorremos todos los nodos a lo sumo nos lleva O(N))
+d) O(log (n)) (Si el arbol esta ordenada y hacemos una busqueda binaria podria llevarnos este orden)
+
+4. Si el TDA Árbol Binario Parcialmente Ordenado – TDA APO – hereda del TDA Arbol Binario, para insertar un
+nuevo elemento deberíamos:
+a) Usar la operación heredada del TDA AB “Insertar(unNodo)” directamente
+b) Escribir una nueva operación de inserción, en la primer posición disponible del último nivel
+c) Escribir una nueva operación que coloque el nuevo elemento en la posición más a la izquierda del último
+nivel y luego haga los intercambios necesarios para que finalmente quede en el lugar que le corresponde (ESta es la opcion correcta)
+d) Usar una operación externa que luego de insertar recomponga la condición necesaria para el TDA APO
+
+5. ¿cuál sería el orden del tiempo de ejecución de la primitiva “Insertar” del TDA APO representado en la forma
+habitual de árboles?
+a) O(n) (esta es la opcion correcta, ya que deberia chequear todas las posiciones hasta encontrar la ultima e insertar un nuevo hijo. no tiene manera de saber cual es la ultima posicion llena)
+b) Constante
+c) O(n2)
+d) O(log (n)

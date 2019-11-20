@@ -1,0 +1,45 @@
+UT6-PD1
+
+Ejercicio 1
+
+1) �c�mo se genera un vector mon�tonamente ascendente
+se itera sobre un vector inicializando los valores de la posicion n con n como valor. numerando 
+desde 1 hasta n. 1,2,3...n O(N)
+
+2) �c�mo se genera un vector mon�tonamente descendente?
+se itera sobre un vector inicializando los valores de la posicion 1 con n como valor. numerando 
+desde n hasta 1. n,n-1,n-2,...1 O(N)
+
+3) �c�mo se genera un vector con valores aleatorios? �pueden existir claves repetidas? �cu�l es el orden
+del tiempo de ejecuci�n de este m�todo?
+se itera al igual que los otros de 1 a n con la particularidad que se agrega tambien un vector
+con valores booleanos y se utiliza una libreria de java para generar numeros pseudo aleatorios
+entre 0 y el tama�o maximo del vector. una vez que tomamos el primer numero se chequea si fue tomado ya en el 
+vector de booleanos. si no es asi se pasa a usado y se agrega en nuestro vector final de
+resultados. este metodo es O(N) si suponemos que la imprementacion de la obtencion de la
+serie aleatoria es O(N)
+
+
+4) �cu�ntos elementos contiene el vector de datos generado?�c�mo se puede modificar esta clase para
+que la cantidad de elementos del vector sea parametrizable?
+el vector contiene 32.000 elementos pero al inicializarlo nos quedamos con un rango y lo clonamos. una manera de hacer parametrizable
+el tama�o del vector del cual tomaremos los segmentos es pasando por parametro un int como tama�o maximo y este lo cree
+a medida. luego clonamos este array entero y lo utilizamos.
+
+5) �c�mo podemos verificar que un conjunto est� ordenado? �cu�l ser�a el orden del tiempo de ejecuci�n
+de un algoritmo que lo haga?
+
+recorriendo todo el conjunto desde el elemento 1 hasta n-1 comparando el elemento actual con el siguiente
+si termina de recorrer todo el conjunto cumpliendose para cada elemento que
+el elemento actual<=elemento siguiente quiere decir que esta ordenado. es O(N)
+
+Ejercicio 2
+
+7)�cu�l es el tiempo de ejecuci�n para cada tipo de vector (tama�o y orden)?
+
+Para 300 elementos con tiempo en ns.
+
+ASC	  DES       Aleatorio
+1012680   29935     55167	Insersion Directa O(N^2), O(N), O(N^2)
+85958     29508     20955	ShellSort O(N^2) O(N^1.23) O(N^1.23)
+20527     953664    24804	BubbleSort O(N), O(N^2), O(N^2)
